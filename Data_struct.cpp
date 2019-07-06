@@ -18,7 +18,7 @@ int main()
             case 3 : pop();break;
             case 4 : display();break;
             case 5 : exit(0); break;
-            default : printf("IInvalid Number");
+            default : printf("Invalid Number");
         }
     }
       return 0;
