@@ -36,7 +36,7 @@ scanf("%d",&num);
 printf("\nSuccessfully Created!\n");
 }
 
-void insert()
+void enqueue()
 {
 if(front == NULL){
 create();
@@ -54,15 +54,22 @@ printf("\nSuccessfully Inserted!!\n");
 }
 }
 
-void delete()
+void dequeue()
 {
-struct node *ptr;
-ptr = front;
-front = front->next;
-ptr->next =NULL;
-free(ptr);
-printf("\nSuccessfully Deleted\n");
+  if(front==NULL)
+  {
+    printf("Queue is empty!");
+  }
+  else{
+  struct node *ptr;
+  ptr = front;
+  front = front->next;
+  ptr->next =NULL;
+  free(ptr);
+  printf("\nSuccessfully Deleted\n");
 }
+}
+  
 
 void display()
 {
@@ -84,13 +91,13 @@ int main()
 {
 int ch;
 while(1){
-printf("\nOperations in Queue....\n1.Create\n2.Insert\n3.Delete\n4.Display\n5.Exit\nEnter your option:\n");
+printf("\nOperations in Queue....\n1.Create\n2.Enqueue\n3.Dequeue\n4.Display\n5.Exit\nEnter your option:\n");
 scanf("%d",&ch);
 switch(ch)
 {
 case 1 : create();break;
-case 2 : insert();break;
-case 3 : delete();break;
+case 2 : enqueue();break;
+case 3 : dequeue();break;
 case 4 : display();break;
 case 5 : exit(0);break;
 default : printf("\nInvalid Number!!\n");break;
