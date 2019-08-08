@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+int pow;
+int coe;
+struct node *next;
+};
+struct node *eq1,*eq2;
+void create()
+{
+struct node *old,*old1;
+int c;
+printf("\n--------EQUATION 1---------\n");
+
+eq1 = (struct node *)malloc(sizeof(struct node));
+printf("Enter power and Coefficient:\n");
+scanf("%d %d",&eq1->pow,&eq1->coe);
+eq1->next = NULL;
+old=eq1;
+
+do{
+struct node *n;
+n=(struct node *)malloc(sizeof(struct node));
+printf("Enter power and Coefficient:\n");
+scanf("%d %d",&n->pow,&n->coe);
+old->next =n;
+n->next = NULL;
+old = old->next;
+printf("\nDo you want Continue(1/0):\n");
+scanf("%d",&c);
+}while(c==1);
+
+printf("\n--------EQUATION 2---------\n");
+
+eq2 = (struct node *)malloc(sizeof(struct node));
+printf("Enter power and Coefficient:\n");
+scanf("%d %d",&eq2->pow,&eq2->coe);
+eq2->next = NULL;
+old1=eq2;
+
+do{
+struct node *n1;
+
+n1=(struct node *)malloc(sizeof(struct node));
+printf("Enter power and Coefficient:\n");
+scanf("%d %d",&n1->pow,&n1->coe);
+old1->next =n1;
+n1->next = NULL;
+old1= old1->next;
+printf("\nDo you want Continue(1/0):\n");
+scanf("%d",&c);
+}while(c==1);
+}
+
+void add()
+{
+
+}
+
+void display()
+{
+struct node *p,*p1;
+printf("\n--------EQUATION 1---------\n");
+
+p = eq1;
+while(p->next!=NULL)
+{
+printf("%d(x)^%d+",p->coe,p->pow);
+p=p->next;
+}
+printf("%d(x)^%d\n",p->coe,p->pow);
+
+printf("\n\n--------EQUATION 2---------\n");
+
+p1 = eq2;
+while(p1->next!=NULL)
+{
+printf("%d(x)^%d+",p1->coe,p1->pow);
+p1=p1->next;
+}
+printf("%d(x)^%d\n",p1->coe,p1->pow);
+}
+
+int main()
+{
+create();
+display();
+}
+
