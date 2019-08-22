@@ -1,0 +1,134 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 5
+int t=0;
+struct node 
+{
+char name[10];
+int age;
+int tc;
+struct node *next;
+};
+struct node *train;
+struct node *front=NULL;
+struct node *rear=NULL ;
+struct node *n;
+
+void reserve()
+{
+int i;
+struct node *old;
+train = (struct node*)malloc(sizeof(struct node));
+printf("Enter the passenger name:");
+scanf("%s",train->name);
+printf("Enter the age:");
+scanf("%d",&train->age);
+train->tc = t++;
+train->next=NULL;
+old=train;
+
+for(i=0;i<MAX-1;i++){
+n = (struct node*)malloc(sizeof(struct node));
+printf("Enter the passenger name:");
+scanf("%s",n->name);
+printf("Enter the age:");
+scanf("%d",&n->age);
+n->tc = t++;
+n->next=NULL;
+old->next=n;
+old=old->next;
+}
+
+}
+
+
+
+void waitlist()
+{
+int num;
+if(front == NULL)
+{
+front = (struct node *)malloc(sizeof(struct node));
+printf("Enter the passenger name:");
+scanf("%s",front->name);
+printf("Enter the age:");
+scanf("%d",&front->age);
+front->tc = t++;
+front->next = NULL;
+rear = front;
+}
+printf("\nPRESS 1 to continue\nPRESS -1 to stop");
+scanf("%d",&num);
+while(num != -1)
+{
+n = (struct node *)malloc(sizeof(struct node));
+printf("Enter the passenger name:");
+scanf("%s",n->name);
+printf("Enter the age:");
+scanf("%d",&n->age);
+n->tc = t++;
+rear->next = n;
+rear =n;
+n->next = NULL;
+printf("\nPRESS 1 to continue\nPRESS -1 to stop");
+scanf("%d",&num);
+}
+
+}
+/*
+void enqueue()
+{
+if(front == NULL){
+create();
+}
+else
+{
+struct node *ptr;
+ptr = (struct node *)malloc(sizeof(struct node));
+printf("\nEnter the number:\n");
+scanf("%d",&ptr->data);
+ptr->next = NULL;
+rear->next = ptr;
+rear = ptr;
+printf("\nSuccessfully Inserted!!\n");
+}
+}
+
+void dequeue()
+{
+
+struct node *ptr;
+ptr = front;
+front = front->next;
+ptr->next =NULL;
+free(ptr);
+printf("\nSuccessfully Deleted\n");
+}*/
+
+void display()
+{
+
+struct node *ptr;
+ptr = front;
+printf("\nPersons in the Waitlist ....\n");
+while(ptr->next != NULL)
+{
+printf("Name :%s\n",ptr->name);
+printf("%Age :d\n",ptr->age);
+printf("%Ticket :d\n",ptr->tc);
+ptr = ptr->next;
+}
+printf("%s\n",ptr->name);
+printf("%d\n",ptr->age);
+printf("%d\n",ptr->tc);
+printf("\nSuccessfully Displayed\n");
+}
+
+int main()
+{
+reserve();
+waitlist();
+display();
+return 0;
+}
+
