@@ -12,13 +12,15 @@ void insert()
 	int j,i,num;
 	printf("\nEnter No .of elements to be inserted:");
 	scanf("%d",&n);
+
 	for(j=0;j<n;j++)
 	{
 		printf("\nEnter the Number:");
 		scanf("%d",&num);
+		
 		nn = (struct node *)malloc(sizeof(struct node));
 		nn->key = num;
-		i=num % n;
+		i=num % 10;
 		nn->next=NULL;
 		if(HashT[i]==NULL)
 		{
@@ -29,29 +31,30 @@ void insert()
 		    p = HashT[i];
 			while(p->next!=NULL)
 			   p = p->next;
-			p = nn; 
+			p->next = nn; 
 		}
 		
 	}
 }
 void display()
 {
-	struct node *p;
+	struct node *ptr;
     int i;
 	for(i=0;i<10;i++)
 	{
-	    printf("\nEntries at index %d:",k);
+	    printf("\nEntries at index %d:",i);
 		if(HashT[i]==NULL)
 		{
 			printf("0");
 		}
 		else 
 		{  
-			p = HashT[i];
-			while(p->next!=NULL)
-			    printf("%d->",p->key);
-			    p = p->next;
-			printf("%d",p->key); 
+			ptr=HashT[i];
+			while(ptr!=NULL)
+			{
+                printf("%d->",ptr->key);
+				ptr=ptr->next;
+				}
 		}
 	}
 }
