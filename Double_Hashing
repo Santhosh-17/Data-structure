@@ -1,0 +1,81 @@
+#include<stdio.h>
+#include<stdlib.h>
+int a[10]={0};
+int P = 0;
+void Prime(int n)
+{
+    int flag = 0;
+    for(int i = 2;i<= n/2; ++i)
+    {
+        if(n%i == 0)
+        {
+            flag =1;
+            break;
+        }
+    }
+    if(flag)
+    {
+        Prime(--n);
+    }
+    else{
+        P = n;
+        printf("Prime Number is: %d\n",P);
+    }
+}
+void insert()
+{
+    int n,s,j,temp;
+    printf("Enter the no.of elements to be inserted:");
+    scanf("%d",&s);
+    Prime(10);
+    printf("Enter the Elements:");
+    for( j=0;j<s;j++)
+    {
+        scanf("%d",&temp);
+        n = temp%10;
+        if(a[n]==0)
+        {
+            a[n] = temp;
+
+        }
+        else
+        {
+            int in,i=0;
+            in = n;
+            while(a[in]!=0)
+            {
+                in = n + (i*(P-(temp%P)));
+                i++;
+            }
+            a[in] = temp;
+
+        }
+    }
+}
+void display()
+{
+	int i;
+     printf("Key\tValue\n");
+    for( i=0;i<10;i++)
+    {
+
+            printf("%d\t%d\n",i,a[i]);
+
+    }
+}
+int main()
+{
+    int ch;
+    while(1)
+    {
+         printf("\n\t\tMenu\n1.Insert\n2.Display\n3.Exit\nEnter your Choice:");
+         scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1 :insert();break;
+            case 2:display();break;
+            case 3:exit(0);break;
+            default:printf("Invalid!");
+        }
+    }
+}
